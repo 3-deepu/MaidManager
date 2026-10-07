@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Maid Hiring</title>
+  <style>
+/* ==== General Reset ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e3f2fd;
+  color: #2c3e50;
+  overflow-x: hidden;
+}
+
+/* ==== Navbar ==== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0288d1, #26c6da);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 50px;
+  width: 150px;
+  object-fit: contain;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+nav ul li a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* ==== Hero Section ==== */
+.hero {
+  position: relative;
+  height: 60vh;
+  background: url('banner.png') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.cta {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #ff6f00;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.cta:hover {
+  background-color: #e65100;
+}
+
+/* ==== Services Grid ==== */
+.grid {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+.grid::before,
+.grid::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.grid::before {
+  top: -100px;
+  left: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 203, 239, 0.3), transparent 70%);
+  animation: floatBubble 12s ease-in-out infinite;
+}
+
+.grid::after {
+  bottom: -80px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(203, 255, 245, 0.3), transparent 70%);
+  animation: floatBubble 15s ease-in-out infinite reverse;
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* ==== Card Style ==== */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.card {
+  background: radial-gradient(circle at top left, rgba(255,255,255,1), rgba(230,247,255,0.8));
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(2,136,209,0.1);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #ff6f00;
+  position: relative;
+  z-index: 1;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    background: linear-gradient(90deg, #0288d1, #26c6da);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .overlay h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+</style>
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="House Maid Logo" />
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <!-- Links will be injected by JS -->
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <h1>Looking To Hire A Maid?</h1>
+      <p><a href="hiringform.html" class="cta">Post Requirement Here ></a></p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="grid">
+    <div class="container">
+      <div class="card">
+        <div class="icon">🧹</div>
+        <h3>House Cleaning</h3>
+        <p>Spotless homes, one swipe at a time!</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏡</div>
+        <h3>Home Assistance</h3>
+        <p>From cooking to caring, we’ve got you covered.</p>
+      </div>
+      <div class="card">
+        <div class="icon">👶</div>
+        <h3>Babysitting</h3>
+        <p>Trustworthy care for your precious ones.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛁</div>
+        <h3>Elderly Care</h3>
+        <p>Compassionate service with respect and love.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🍽️</div>
+        <h3>Catering Services</h3>
+        <p>Healthy meals delivered with a smile.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛠️</div>
+        <h3>Construction Work</h3>
+        <p>Reliable labor for your renovation needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nav Link Injection Script -->
+  <script>
+    const navLinks = document.getElementById("nav-links");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="userprofile.html">User Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="loginpage.html">Login</a></li>
+      `;
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "logoutBtn") {
+        localStorage.setItem("isLoggedIn", "false");
+        window.location.reload();
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+

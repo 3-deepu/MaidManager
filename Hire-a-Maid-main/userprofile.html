@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile - The Maid Dispatch</title>
+  
+  <style>
+   /* ==== Reset & Base ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #f8fbff);
+  color: #2c3e50;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==== Animated Background ==== */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(2,136,209,0.07) 10%, transparent 70%);
+  animation: floatBubbles 15s infinite ease-in-out;
+  z-index: -2;
+}
+
+body::after {
+  animation-delay: -7s;
+  background: radial-gradient(circle, rgba(255,111,0,0.06) 10%, transparent 70%);
+}
+
+@keyframes floatBubbles {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(15px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* ==== Header ==== */
+header {
+  background: linear-gradient(90deg, #0288d1, #26c6da);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ==== Container ==== */
+.container {
+  max-width: 1100px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: rgba(2,136,209,0.07);
+  border-radius: 50%;
+  z-index: 0;
+  animation: pulse 6s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+/* ==== Headings ==== */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #ff6f00;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==== User Details ==== */
+.user-details {
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.user-details p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+/* ==== Table Styling ==== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+th, td {
+  padding: 14px 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  background: linear-gradient(90deg, #0288d1, #26c6da);
+  color: white;
+  font-size: 0.95rem;
+}
+
+td {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: rgba(2,136,209,0.05);
+}
+
+/* ==== Buttons ==== */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+button, .home-btn {
+  background: linear-gradient(135deg, #ff6f00, #ff9800);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .home-btn:hover {
+  background: linear-gradient(135deg, #e65100, #f57c00);
+  transform: translateY(-2px);
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    background: linear-gradient(90deg, #0288d1, #26c6da);
+    padding: 15px;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button, .home-btn {
+    width: 100%;
+  }
+
+  table th, table td {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="House Maid Logo" />
+    </div>
+    <nav>
+      <ul id="nav-links"></ul>
+    </nav>
+  </header>
+
+  <!-- Profile Container -->
+  <div class="container">
+    <div class="user-details">
+      <h2>User Profile</h2>
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Age:</strong> <span id="age"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+    </div>
+
+    <!-- Bookings Table -->
+    <h2>Booked Maids</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Assign To</th>
+          <th>Action</th>
+          <th>Change Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows will be added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Dynamic Navbar Setup -->
+  <script>
+    const navLinks = document.getElementById("nav-links");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="userprofile.html">User Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="loginpage.html">Login</a></li>
+      `;
+    }
+
+    // Navbar Logout button handler
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "logoutBtn") {
+        localStorage.setItem("isLoggedIn", "false");
+        localStorage.removeItem("user");
+        location.href = "loginpage.html";
+      }
+    });
+  </script>
+
+  <!-- Firebase Profile + Bookings Logic -->
+  <script type="module" src="userprofile.js"></script>
+</body>
+
+</html>
+
+
+
